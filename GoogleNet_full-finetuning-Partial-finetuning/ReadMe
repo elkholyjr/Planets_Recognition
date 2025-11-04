@@ -1,0 +1,19 @@
+COMPARATIVE ANALYSIS OF TRAINING STRATEGIES
+
+This project compared three strategies for training GoogLeNet on an 11-class dataset: training from scratch, full fine-tuning, and partial fine-tuning. Each method was evaluated in terms of performance, resource usage, and trade-offs.
+
+1. Training from Scratch:
+This approach initializes all model parameters randomly. It achieved high accuracy but required the most training time 44s and computational resources due to learning all weights from the beginning. It risks overfitting if the dataset is small and generally converges slower since no pretrained knowledge is leveraged.
+
+2. Full Fine-Tuning:
+Here, a pretrained GoogLeNet (ImageNet weights) was used, and all layers were unfrozen for training. The model adapted quickly, achieving 99% accuracy within similar time 43s. It required moderate resources but provided better generalization. However, updating all parameters increases GPU memory usage and training time compared to partial fine-tuning.
+
+3. Partial Fine-Tuning:
+Only the final fully connected (fc) layer was trained, while earlier layers remained frozen. This method achieved 99–100% accuracy with minimal overfitting and the least resource consumption 44s total time. It’s ideal for small datasets since it preserves learned feature representations while adapting the output layer to new classes.
+
+Trade-offs Summary:
+- Training from scratch provides maximum flexibility but is computationally expensive.
+- Full fine-tuning balances performance and adaptability but requires more GPU memory.
+- Partial fine-tuning is fastest and most resource-efficient but offers limited feature adaptation.
+
+Overall, partial fine-tuning delivered the best trade-off between efficiency and accuracy for this dataset.
