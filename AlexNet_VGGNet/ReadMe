@@ -1,0 +1,40 @@
+PLANETS AND MOONS DATASET - AI IN SPACE 
+1. DATASET OVERVIEW
+The Planets and Moons dataset consists of 8 confirmed planets, 2 dwarf planets, and Earth's Moon — totaling 11 classes. Each class contains approximately 149 optimized 3D photos. The dataset was collected by Emirhan BULUT and licensed under CC BY-NC 4.0, prohibiting commercial use.
+2. LIBRARIES AND IMPORTS
+Key libraries used include TensorFlow, Keras, NumPy, Pandas, Seaborn, Matplotlib, and Scikit-learn. These were used for image processing, model building, evaluation, and visualization.
+3. DATA PREPARATION
+Images were loaded using ImageDataGenerator with rescaling and data augmentation applied. A stratified 5-fold cross-validation split was performed to ensure balanced distribution across folds. Each fold generated training, validation, and test CSV files.
+A class distribution plot confirmed that all 11 classes were evenly represented, ensuring balanced training.
+4. MODEL DEVELOPMENT
+Two convolutional neural network architectures were implemented:
+- AlexNet: A sequential CNN with multiple convolutional, pooling, and dense layers. It was compiled with Adam optimizer and categorical cross-entropy loss.
+- VGG16: A transfer learning model using pretrained ImageNet weights with additional dense layers on top. Base layers were frozen to leverage learned representations.
+5. MODEL TRAINING
+Each model was trained for 10 epochs using the training and validation generators derived from the folds. Training progress was monitored through loss and accuracy metrics per epoch.
+Summary of training behavior:
+- AlexNet showed slow learning and low validation accuracy (~18%).
+- VGG16 demonstrated rapid convergence, achieving over 99% validation accuracy.
+6. MODEL EVALUATION
+Both models were evaluated using the test set. Performance metrics included Accuracy, Precision, Recall, and F1-score.
+ALEXNET RESULTS
+Accuracy : 0.1799
+Precision: 0.0976
+Recall   : 0.1799
+F1-score : 0.1051
+
+AlexNet suffered from underfitting and failed to generalize, predicting only a few classes correctly.
+VGG16 RESULTS
+Accuracy : 0.9970
+Precision: 0.9971
+Recall   : 0.9970
+F1-score : 0.9970
+
+VGG16 achieved outstanding performance across all metrics, successfully classifying nearly all test images.
+7. MODEL COMPARISON
+Final model comparison table:
+Model	Accuracy	Precision	Recall	F1-score
+AlexNet	0.1799	0.0976	0.1799	0.1051
+VGG16	0.9970	0.9971	0.9970	0.9970
+8. CONCLUSION
+VGG16 significantly outperformed AlexNet on the Planets and Moons dataset, achieving near-perfect accuracy. Transfer learning proved highly effective for astronomical image classification tasks. Future improvements may include fine-tuning additional layers and testing alternative architectures like ResNet or EfficientNet.
